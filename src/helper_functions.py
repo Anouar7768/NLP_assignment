@@ -4,7 +4,7 @@ def add_labels(df):
     Add label column in the original dataframe
     """
     res = df.copy()
-    sentiment_to_label = {"positive": 2, "neutral": 1, "negative": 1}
+    sentiment_to_label = {"positive": 2, "neutral": 1, "negative": 0}
     res["labels"] = res[0].apply(lambda sentiment: sentiment_to_label[sentiment])
     return res
 

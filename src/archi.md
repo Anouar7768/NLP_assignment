@@ -1,12 +1,12 @@
 ## 1. Name of the students
 
-Pierre Boscherel, Alexis-Raja Brachet, Laurane Gorgues, Anour Oussalah
+Pierre Boscherel, Alexis-Raja Brachet, Laurane Gorgues, Anouar Oussalah
 
 ## 2. Description of the classifier
 
 The overall architecture is based on the "Adapt or Get Left Behind:Domain Adaptation through BERT Language Model Finetuning for Aspect-Target Sentiment Classification" article by Alexander Rietzler et al. https://arxiv.org/pdf/1908.11860.pdf. 
 
-The model choosed to produce the contextualized embeddings is the pre-trained model **BERT base uncased**. We choose the base one as it light in memory.
+To produce the contextualized embeddings, we use the pre-trained model **BERT base uncased**. We chose the base one as it's light in memory, and needs less time to fine-tune.
 
 ### Pre-processing :
 
@@ -20,7 +20,7 @@ Finally, the input for the transformer is : "[CLS] token_sentence [SEP] token_as
 
 The length of each data point is quite small, ie nerver exceeding 200 tokens. Thus, there is no need to truncate it before giving it to the transformer model.
 
-The output is an contextalized embedding for each token.
+The output is a contextalized embedding for each token.
   
 We add a column to convert the labels into numerical data : negative = 0, neutral = 1, positive = 2.
 

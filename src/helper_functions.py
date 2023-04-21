@@ -17,11 +17,11 @@ def add_processed_col(df):
     list_input = []
     for i in range(len(df[0])):
         string = ""
+        string += df[1].iloc[i]
+        string += " [SEP] "
         string += df[4].iloc[i]
         string += " [SEP] "
         string += df[2].iloc[i]
-        string += " [SEP] "
-        string += df[1].iloc[i]
         list_input.append(string)
     res["processed_input"] = list_input
     return res

@@ -9,7 +9,7 @@ from TransformerBinaryClassifier import TransformerBinaryClassifier
 
 import torch
 from datasets import Dataset
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, WeightedRandomSampler
 from torch.optim import Adam
 
 from transformers import get_scheduler
@@ -61,10 +61,20 @@ class Classifier(torch.nn.Module):
                                                 padding=True,
                                                 return_tensors='pt')
 
+        class_sample_count = np.array(
+        [len(np.where(df_train["labels"] == t)[0]) for t in np.unique(df_train["labels"])])
+
+        weight = 1. / class_sample_count
+        samples_weight = np.array([weight[t] for t in df_train["labels"]])
+        samples_weight = torch.from_numpy(samples_weight)  
+
+        sampler = WeightedRandomSampler(samples_weight.type('torch.DoubleTensor'), len(samples_weight))
+
         train_dataloader = DataLoader(tok_ds_train,
-                                      shuffle=True,
+                                      shuffle=False,
                                       batch_size=self.batch_size,
-                                      collate_fn=data_collator)
+                                      collate_fn=data_collator,
+                                      sampler=sampler)
 
         optimizer = Adam(self.model.parameters(), lr=self.lr)
 

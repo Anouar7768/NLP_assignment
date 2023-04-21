@@ -103,7 +103,6 @@ class Classifier(torch.nn.Module):
                 lr_scheduler.step()
                 optimizer.zero_grad()
                 progress_bar.update(1)
-                print(loss)
 
         return None
 

@@ -36,4 +36,5 @@ We add a column to convert the labels into numerical data : negative = 0, neutra
  ## 3. Accurary on the dev set
  
  The best run we got produced an average accuracy of 88.24% on the dev set with a standard deviation of 0.81 ([87.77 89.63 88.56 87.23 88.03]).
+ For some ponctual runs, the model predicted positive for all the data points of the dev set, getting a 70% accuracy. We investigated the reason why but we haven't found it during our experimentations.
   

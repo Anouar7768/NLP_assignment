@@ -30,11 +30,9 @@ We add a column to convert the labels into numerical data : negative = 0, neutra
 
   The classification task is performed on top of the [CLS] token hidden representation - as in the self-supervised learning of BERT used for sequence-pair classification -. We take advantage of a shallow neural network with only one layer outputting the probability over the 3 classes : negative, neutral, positive, with a softmax at the end. The argmax is taken to perform the prediction.
   
-  The optimizer chosen is the well known Adam with a quite small learning rate : 0.00001. We choose a batch size of 32 and 20 epochs. As the data labels are unbalanced, we thought about wisely build each batch to prevent to have batch with only the positive label, but it gave poorer results.
- 
+  The optimizer chosen is the well known Adam with a quite small learning rate : 0.00001. We choose a batch size of 32 and 20 epochs after testing multiple other value which gave lower accuracies on the dev set. With a simple dataloader with shuffling this model gave very good results but not regular ones. Indeed, over 5 runs we could reach accuracies of 89% on the dev set on one given run and 70% on the next run. As the 70% runs were quite frequent, this would most likely decrease drasticaly the average accuracy over 5 runs on the test and dev set. Thus, we chose to use a Sampler in combination to the model described above: we used the WeightedRandomSampler in order to have training batches representative of the train set (as it is very unbalanced between the "positive", "negative" and "neutral polarities). This had the effect of stabilizing the accuracy on the dev set but it also lowered it (the accuracy revolved more around 85% than 88% but we did not get anymore 70%).
  
  ## 3. Accurary on the dev set
  
- The best run we got produced an average accuracy of 88.24% on the dev set with a standard deviation of 0.81 ([87.77 89.63 88.56 87.23 88.03]).
- For some ponctual runs, the model predicted positive for all the data points of the dev set, getting a 70% accuracy. We investigated the reason why but we haven't found it during our experimentations.
+ The best run we got using the sampler (the model we chose to implement in the end, after experimentation) produced an average accuracy of 85.11% on the dev set with a standard deviation of 1.29 ([87.23 85.64 83.78 85.11 83.78]).
   

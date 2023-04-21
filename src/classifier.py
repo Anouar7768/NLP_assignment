@@ -22,7 +22,7 @@ class Classifier(torch.nn.Module):
     __init__() function) and the 2 methods train() and predict() below. Please donot change
      """
 
-    def __init__(self, plm_name='roberta-base', num_epochs=20, lr=1e-6, batch_size=32, model=None):
+    def __init__(self, plm_name='roberta-base', num_epochs=20, lr=1e-5, batch_size=32, model=None):
         super(Classifier, self).__init__()
         self.plm_name = plm_name
         self.num_epochs = num_epochs

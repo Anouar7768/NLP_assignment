@@ -6,7 +6,7 @@ Pierre Boscherel, Alexis-Raja Brachet, Laurane Gorgues, Anouar Oussalah
 
 ## 2. Description of the classifier
 
-The overall architecture is based on the "Adapt or Get Left Behind:Domain Adaptation through BERT Language Model Finetuning for Aspect-Target Sentiment Classification" article by Alexander Rietzler et al. https://arxiv.org/pdf/1908.11860.pdf. 
+The overall architecture and methodology has been adapted from the "Adapt or Get Left Behind:Domain Adaptation through BERT Language Model Finetuning for Aspect-Target Sentiment Classification" article by Alexander Rietzler et al. https://arxiv.org/pdf/1908.11860.pdf. 
 
 To produce the contextualized embeddings, we use the pre-trained model **Roberta base**. We chose the base one as it's light in memory.
 

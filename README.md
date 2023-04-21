@@ -16,9 +16,9 @@ We don't compute any hand-features on top of the data.
 
 The raw input data for the classifier is composed by a Sentence, an Aspect term and an Aspect category. 
 
-We first tokenize the input. The data given to the tokenizer is the following string "sentence [SEP] aspect term [SEP] Aspect category". Indeed, we want to take advantage from the attention mechanism to produce embeddings conditionned by the aspect category and the aspect term. The chosen order is the one with the best performances.
+We first tokenize the input. The data given to the tokenizer is the following string "aspect term [SEP] sentence [SEP] Aspect category". Indeed, we want to take advantage from the attention mechanism to produce embeddings conditionned by the aspect category and the aspect term. The chosen order is the one with the best performances.
 
-Finally, the input for the transformer is : "[CLS] token_sentence [SEP] token_aspect_term [SEP] token_aspect_category [SEP]".
+Finally, the input for the transformer is : "[CLS] token_aspect_term [SEP] token_sentence [SEP] token_aspect_category [SEP]".
 
 The length of each data point is quite small, ie nerver exceeds 200 tokens. Thus, there is no need to truncate it before giving it to the transformer model.
 
